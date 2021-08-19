@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Be U | Create a new post </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Georama:wght@100&display=swap" rel="stylesheet">
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </head>
+  <body>
+    <header>
+        <div style="display: inline-block;">
+            <div style="text-align: left;display: inline-block;"><br><br><img style="width: 10vw;" src="/static/logo.png"></div>
+        </div>
+        <div style="text-align: center; position:absolute; top: 3.5vw; left: 47vw;"><h1 style="text-align: center;font-size: 3vw;">Be U</h1></div>
+
+        {% if User %}
+        <h2 style="text-align: right;margin: 0;">Hello, <a href="/signout">{{User.nickname}}</a></h2>
+        {% else %}
+        <h2 style="text-align: right;margin: 0;">Please <a href="/login">login</a></h2>
+        {% endif %}
+    </header>
+    <div class="menu" id="menu" style="left: -10vw;">
+        <div class="menu-b" onclick="location.replace('/')"><a href="/">Home</a></div>
+        <div class="menu-b" onclick="location.replace('/login')"><a href="/login">Login</a></div>
+        <div class="menu-b" onclick="location.replace('/signup')"><a href="/signup">Signup</a></div><span class="menu-show" onclick="showMenu()" id="menuButton"> > </span>
+        <div class="menu-b" onclick="location.replace('/about-us')"><a href="/about-us">About us</a></div>
+        <div class="menu-b" onclick="location.replace('/create')"><a href="/create">Post</a></div>
+    </div>
+    <div style="text-align: center;">
+        <form method="POST">
+          <h1>Edit a post</h1>
+          <hr color="black" width="45%">
+          <form method="POST" >
+          <input type="text" name="content" placeholder="Edit the content" value="{{Post.content}}">
+          <br>
+          <input type="text" name="picture" placeholder="Edit picture: (change the URL)" value="{{Post.image_link}}">
+          <br>
+          <br>
+          <input type="submit" value="Submit">
+          <br>
+          <br>
+        </form>
+    </div>
+    <script>
+        document.getElementById('menuButton').addEventListener("mouseenter", function( event ) {
+            menu.style.left = '0';
+            menuButton.style.left = '10vw';
+            menuButton.innerText = "<";
+        })
+        document.getElementById('menu').addEventListener("mouseleave", function( event ) {
+            menu.style.left = '-10vw';
+            menuButton.style.left = '0';
+            menuButton.innerText = ">";
+        })
+        </script>
+  </body>
+</html>

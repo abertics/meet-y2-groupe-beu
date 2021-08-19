@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Be U | Home</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Georama:wght@100&display=swap" rel="stylesheet">
+        <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
+        <style>
+            h2{
+                color: #FEC8AD;
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div style="display: inline-block;">
+                <div style="text-align: left;display: inline-block;"><br><br><img style="width: 10vw;" src="/static/logo.png"></div>
+            </div>
+            <div style="text-align: center; position:absolute; top: 3.5vw; left: 47vw;"><h1 style="text-align: center;font-size: 3vw;">Be U</h1></div>
+
+            {% if User %}
+            <h2 style="text-align: right;margin: 0;">Hello, <a href="/signout">{{User.nickname}}</a></h2>
+            {% else %}
+            <h2 style="text-align: right;margin: 0;">Please <a href="/login">login</a></h2>
+            {% endif %}
+        </header>
+        <div class="menu" id="menu" style="left: -10vw;">
+            <div class="menu-b" onclick="location.replace('/')"><a href="/">Home</a></div>
+            <div class="menu-b" onclick="location.replace('/login')"><a href="/login">Login</a></div>
+            <div class="menu-b" onclick="location.replace('/signup')"><a href="/signup">Signup</a></div><span class="menu-show" onclick="showMenu()" id="menuButton"> > </span>
+            <div class="menu-b" onclick="location.replace('/about-us')"><a href="/about-us">About us</a></div>
+            <div class="menu-b" onclick="location.replace('/create')"><a href="/create">Post</a></div>
+        </div>
+        <div style="padding: 2vw;">
+            <h2>Hello! We are Be U and the website you see now is our project!  </h2>
+            <br> <br>
+            <h4>It basically is a web page community for teens struggling with body image issues and/or eating disorders who need guidance, help and people to relate to and communicate with.</h4>
+            <h4>Since we are teens ourselves this is a close subject to us and we've had experince with it or had friends who have had experience with it </h4>
+            <br> <br>
+            <h2>So... What is an eating disorder?</h2>
+            <h4>An eating disorder is a mental disorder defined by abnormal eating behaviors that negatively affect a person's physical or mental health, And it is not uncommon among teens…</h4>
+            <br> 
+            <h2> How can you help someone with an eating disorder? </h2>
+            <h4> You can support them in many diffrent ways like: </h4>
+            <h4> - Keep trying to include them, don't make them feel left out.</h4>
+            <h4> - Try to build up their self-esteem, be appreciative! </h4>
+            <h4> - Give your time, listen to them and try not to give advice or criticise </h4>
+            <br>
+            <h4> And here are some helpful websites: </h4>
+        <form class = "button" action="https://www.helpguide.org/articles/eating-disorders/helping-someone-with-an-eating-disorder.htm">
+            <input type="submit" value="How to help someone with an eating disorder" />
+        </form>
+        <br>
+        <form class = "button" action="https://www.nationaleatingdisorders.org/learn/help/caregivers">
+            <input type="submit" value="How to help a loved one" />
+        </form>
+    </div>
+    <script>
+        document.getElementById('menuButton').addEventListener("mouseenter", function( event ) {
+            menu.style.left = '0';
+            menuButton.style.left = '10vw';
+            menuButton.innerText = "<";
+        })
+        document.getElementById('menu').addEventListener("mouseleave", function( event ) {
+            menu.style.left = '-10vw';
+            menuButton.style.left = '0';
+            menuButton.innerText = ">";
+        })
+        </script>
+    </body>
+</html>
